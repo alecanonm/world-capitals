@@ -1,5 +1,4 @@
-const HomePage = () => {
-  return <h1>Home</h1>;
-};
+import { GuessSection } from "@components/organisms";
 
+const HomePage = () => <GuessSection />;
 export default HomePage;
