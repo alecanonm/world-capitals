@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import React from "react";
 import "@/styles/globals.css";
+import axios from "axios";
+
+axios.defaults.baseURL = "http://localhost:3000";
 
 const inter = Inter({ subsets: ["latin"] });
 
