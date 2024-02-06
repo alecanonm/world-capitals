@@ -4,7 +4,8 @@ import React from "react";
 import "@/styles/globals.css";
 import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:3000";
+axios.defaults.baseURL =
+  "http://localhost:3000" || process.env.NEXT_PUBLIC_BASE_URL;
 
 const inter = Inter({ subsets: ["latin"] });
 
