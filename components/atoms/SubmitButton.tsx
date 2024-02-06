@@ -3,17 +3,29 @@
 import { useCountryContext } from "@/context/countryContext";
 import axios from "axios";
 import React from "react";
+import { useRouter } from "next/navigation";
 
 const SubmitButton = () => {
-  const { setCountry } = useCountryContext();
+  const { setCountry, capital, country, setScore, setCapital } =
+    useCountryContext();
+
+  const router = useRouter();
 
   const handleSubmit = function handleSubmit(
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) {
     e.preventDefault();
-    axios.get("api/getCountry").then((res) => {
-      setCountry(res.data);
-    });
+
+    if (country.capital === capital) {
+      console.log("Correct");
+      setScore((prev) => Number(prev) + 1);
+      setCapital("");
+      axios.get("api/getCountry").then((res) => {
+        setCountry(res.data);
+      });
+    } else {
+      router.push("/gameover");
+    }
   };
 
   return (

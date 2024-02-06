@@ -12,6 +12,10 @@ type Country = {
 type CountryContextType = {
   country: Country;
   setCountry: React.Dispatch<React.SetStateAction<Country>>;
+  capital: String;
+  setCapital: React.Dispatch<React.SetStateAction<String>>;
+  score: Number;
+  setScore: React.Dispatch<React.SetStateAction<Number>>;
 };
 
 const countryContextDefaultValues: CountryContextType = {
@@ -21,6 +25,10 @@ const countryContextDefaultValues: CountryContextType = {
     capital: "",
   },
   setCountry: () => {},
+  capital: "",
+  setCapital: () => {},
+  score: 0,
+  setScore: () => {},
 };
 
 const CountryContext = createContext(countryContextDefaultValues);
@@ -38,6 +46,9 @@ export const CountryProvider = ({
     capital: "",
   });
 
+  const [capital, setCapital] = useState<String>("");
+  const [score, setScore] = useState<Number>(0);
+
   useEffect(() => {
     axios.get<Country>("api/getCountry").then((res) => {
       setCountry(res.data);
@@ -45,7 +56,9 @@ export const CountryProvider = ({
   }, []);
 
   return (
-    <CountryContext.Provider value={{ country, setCountry }}>
+    <CountryContext.Provider
+      value={{ country, setCountry, capital, setCapital, score, setScore }}
+    >
       {children}
     </CountryContext.Provider>
   );
