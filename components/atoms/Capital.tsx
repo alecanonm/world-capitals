@@ -9,7 +9,7 @@ const Capital = () => {
     axios.get("api/getCountry").then((res) => {
       setCountry(res.data.capital);
     });
-  }, []);
+  }, [country]);
 
   return <h1 className="text-3xl h-9 font-extrabold">{country}</h1>;
 };
