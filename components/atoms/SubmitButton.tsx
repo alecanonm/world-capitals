@@ -6,8 +6,15 @@ import React from "react";
 import { useRouter } from "next/navigation";
 
 const SubmitButton = () => {
-  const { setCountry, capital, country, setScore, setCapital } =
-    useCountryContext();
+  const {
+    setCountries,
+    capital,
+    countries,
+    setScore,
+    setCapital,
+    randomCountry,
+    setRandomCountry,
+  } = useCountryContext();
 
   const router = useRouter();
 
@@ -16,12 +23,13 @@ const SubmitButton = () => {
   ) {
     e.preventDefault();
 
-    if (country.capital === capital) {
+    if (countries[Number(randomCountry)].capital === capital) {
       console.log("Correct");
       setScore((prev) => Number(prev) + 1);
       setCapital("");
+      setRandomCountry(Math.floor(Math.random() * countries.length));
       axios.get("api/getCountry").then((res) => {
-        setCountry(res.data);
+        setCountries(res.data);
       });
     } else {
       router.push("/gameover");

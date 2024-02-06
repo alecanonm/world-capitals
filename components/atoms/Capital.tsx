@@ -3,8 +3,12 @@
 import { useCountryContext } from "@/context/countryContext";
 
 const Capital = () => {
-  const { country } = useCountryContext();
+  const { countries, randomCountry } = useCountryContext();
 
-  return <h1 className="text-3xl h-9 font-extrabold">{country.country}</h1>;
+  return (
+    <h1 className="text-3xl h-9 font-extrabold">
+      {countries[Number(randomCountry)]?.country}
+    </h1>
+  );
 };
 export default Capital;

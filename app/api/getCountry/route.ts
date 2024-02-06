@@ -4,8 +4,7 @@ import { NextResponse } from "next/server";
 export async function GET() {
   try {
     const result = await prisma.country.findMany();
-    const random = Math.floor(Math.random() * result.length);
-    return NextResponse.json(result[random]);
+    return NextResponse.json(result);
   } catch (e: any) {
     return NextResponse.json({ error: e.message });
   }
