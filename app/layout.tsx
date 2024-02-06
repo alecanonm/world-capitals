@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import React from "react";
 import "@/styles/globals.css";
 import axios from "axios";
+import { CountryProvider } from "@/context/countryContext";
 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -23,7 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div className="h-screen flex flex-col bg-hero-pattern bg-center">
-          {children}
+          <CountryProvider>{children}</CountryProvider>
         </div>
       </body>
     </html>

@@ -1,16 +1,10 @@
 "use client";
-import { useEffect, useState } from "react";
-import axios from "axios";
+
+import { useCountryContext } from "@/context/countryContext";
 
 const Capital = () => {
-  const [country, setCountry] = useState("");
+  const { country } = useCountryContext();
 
-  useEffect(() => {
-    axios.get("api/getCountry").then((res) => {
-      setCountry(res.data.capital);
-    });
-  }, [country]);
-
-  return <h1 className="text-3xl h-9 font-extrabold">{country}</h1>;
+  return <h1 className="text-3xl h-9 font-extrabold">{country.capital}</h1>;
 };
 export default Capital;
