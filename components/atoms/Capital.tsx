@@ -2,6 +2,17 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+export async function getStaicProps() {
+  const res = await axios.get("api/getCountry");
+  const data = res.data;
+  return {
+    props: {
+      countryData: data,
+    },
+    revalidate: 1,
+  };
+}
+
 const Capital = () => {
   const [country, setCountry] = useState("");
 
